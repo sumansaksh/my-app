@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add prodcuts</h1>
+    <div>
+        <input type="number" id="id" placeholder="Id" /></br>
+        <input type="text" id="name" placeholder="Name" /></br>
+        <input type="number" id="price" placeholder="Price" /></br>
+        <button onclick="addProduct()">Add Product</button>
+      </div>
+  
+<div>
+    <h1>dealete products</h1>
+    <input type="number" id="product_id" placeholder="Id" /></br>
+    <button onclick="deleteproduct()">Delete Product</button>
+</div>
+
+<div>
+    <h1>Get products</h1>
+    <button onclick="get()">Get Product</button>
+</div>
+
+<div>
+    <h1>update products</h1>
+    <input type="number" id="update_id" placeholder="id" /></br>
+    <input type="text" id="update_name" placeholder="Name" /></br>
+    <input type="number" id="update_price" placeholder="Price" /></br>
+    <button onclick="update()">update Product</button>
+</div>
+
+</body>
+</html>
+<script>
+    async function addProduct(){
+    let data = {
+
+         id : document.getElementById("id").value,
+        name : document.getElementById("name").value,
+        price : document.getElementById('price').value,
+    };
+
+    try{
+    let responce = await  fetch("http://localhost:5000/api/products",{
+
+        method: "POST",
+        body:JSON.stringify(data),
+        headers:{
+
+            'Content-Type': "application/json"
+
+        },
+
+    });
+
+    let d = await responce.json();
+    console.log("data:",d);
+
+}catch(e){
+
+    console.log("data:",data);
+
+}
+
+}
+
+
+async function deleteproduct(){
+
+    let id = document.getElementById("product_id").value
+    let responce = await fetch(`http://localhost:5000/api/products/${id}`,{
+
+        method: "DELETE",
+
+        headers:{
+
+       'Content-Type': "application/json"
+
+},
+
+
+    })
+
+}
+
+async function get(){
+    
+    try{
+    let res = await fetch(
+          "http://localhost:5000/api/products"
+          //http://www.omdbapi.com/?apikey=5c6a46f5t=tt1270797
+          
+    );
+    let data = await res.json();
+    console.log(data)
+}catch(e){
+
+    alert("Movie not foud")
+}
+    
+}
+
+
+async function update(){
+    let id = document.getElementById("update_id").value
+    let dataup = {
+        id : document.getElementById("update_id").value,
+       name : document.getElementById("update_name").value,
+       price : document.getElementById('update_price').value,
+};
+
+let responce = await fetch(`http://localhost:5000/api/products/${id}`,{
+
+    method: "PUT",
+    body:JSON.stringify(dataup),
+
+    headers:{
+
+   'Content-Type': "application/json"
+
+},
+
+
+})
+let d = await responce.json();
+    console.log("data:",d);
+
+}
+
+</script>
