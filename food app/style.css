@@ -1,0 +1,19 @@
+#navbar {
+    display: flex;
+    padding-left: 4%;
+    padding-right: 4%;
+    background-color: palegoldenrod;
+    /* border: solid 1px black; */
+  }
+
+  #options {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #options h3 {
+    padding-left: 30px;
+    padding-right: 10px;
+  }
+  
+  
