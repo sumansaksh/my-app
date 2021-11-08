@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #navbar {
     display: flex;
     padding-left: 4%;
@@ -16,4 +17,24 @@
     padding-right: 10px;
   }
   
+=======
+#navbar {
+    display: flex;
+    padding-left: 4%;
+    padding-right: 4%;
+    background-color: palegoldenrod;
+    /* border: solid 1px black; */
+  }
+
+  #options {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #options h3 {
+    padding-left: 30px;
+    padding-right: 10px;
+  }
+  
+>>>>>>> 88c49ccd6ad850de3c31feef1c530e1e8efd0c45
   
