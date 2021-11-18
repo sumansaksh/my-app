@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "css:build": " tailwind build ./src/style.css -o ./build/style.css"
+    
   },
   "author": "",
   "license": "ISC",
