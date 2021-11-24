@@ -1,0 +1,117 @@
+create dtatabase
+=> use dbasignment
+
+create collection
+=>db.createCollection('Users')
+
+inset 1 document
+=>db.asignment.insert({
+   'first_name':'suman', 
+   'last_name':'sakshi',
+   'email':'suman@gmail.com',
+   'gender':'female',
+   'ip_address':'506.457.14.512',
+   'age':19
+})
+
+
+insert many 
+=> db.asignment.insert([{
+   'first_name':'meera', 
+   'last_name':'Mendhe',
+   'email':'meera@gmail.com',
+   'gender':'female',
+   'ip_address':'506.457.14.513',
+   'age':19
+},
+
+{
+   'first_name':'jai', 
+   'last_name':'dev',
+   'email':'jai@gmail.com',
+   'gender':'male',
+   'ip_address':'506.457.14.514',
+   'age':25
+},
+{
+   'first_name':'pummy', 
+   'last_name':'sharma',
+   'email':'pummy@gmail.com',
+   'gender':'female',
+   'ip_address':'506.457.14.515',
+   'age':21
+},
+{
+   'first_name':'pankaj', 
+   'last_name':'raj',
+   'email':'pankaj@gmail.com',
+   'gender':'male',
+   'ip_address':'506.457.14.516',
+   'age':20
+},
+{
+   'first_name':'anushka', 
+   'last_name':'sharma',
+   'email':'anushka@gmail.com',
+   'gender':'female',
+   'ip_address':'506.457.14.517',
+   'age':25
+},
+{
+   'first_name':'virat', 
+   'last_name':'kohli',
+   'email':'virat@gmail.com',
+   'gender':'male',
+   'ip_address':'506.457.14.518',
+   'age':27
+},
+{
+   'first_name':'rohit', 
+   'last_name':'sharma',
+   'email':'rohit@gmail.com',
+   'gender':'male',
+   'ip_address':'506.457.14.519',
+   'age':50
+},
+{
+   'first_name':'diljit', 
+   'last_name':'paji',
+   'email':'siljit@gmail.com',
+   'gender':'male',
+   'ip_address':'506.457.14.5110',
+   'age':32
+},
+{
+   'first_name':'sachin', 
+   'last_name':'tendulkar',
+   'email':'sachin@gmail.com',
+   'gender':'male',
+   'ip_address':'506.457.14.5111',
+   'age':40
+}])
+
+
+find
+=> db.check.find()
+
+findOne
+=> db.check.findOne({name:'jai'})
+
+updateOne
+=> db.asignment.update({"last_name" : "s"},
+ {
+        "last_name" : "sakshi",
+
+ })
+
+update Many
+=> db.asignment.updateMany({gender:'male'},{$set:{gender:"M"}})
+
+delete (one)
+=> db.asignment.remove({"first_name":"diljeet"})
+
+delete Many
+=> db.asignment.remove({gender:'M'})
+
+delete dtatabase
+=>db.dropDatabase()
