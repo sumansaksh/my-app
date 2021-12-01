@@ -65,19 +65,19 @@ const bookSchema = new mongoose.Schema(
 
       author_id:[{ 
         type: mongoose.Schema.Types.ObjectId,
-        ref: "authors",
+        ref: "author",
         required: true,
       }],
 
       section_id:{ 
         type: mongoose.Schema.Types.ObjectId,
-        ref: "sections",
+        ref: "section",
         required: true,
       },
 
       check_id:{ 
         type: mongoose.Schema.Types.ObjectId,
-        ref: "checkout",
+        ref: "check",
         required: true,
       },
 
@@ -126,7 +126,68 @@ const checkSchema = new mongoose.Schema(
 
   //////////////////////GET////////////////////
   //app.get("/")
+  app.get("/books",async (req,res)=>{
+    try{
+        const Book  = await book.find().populate("author_id").populate("section_id").populate("check_id").lean().exec();
+        
+        return res.status(200).send(Book);
+        
+    }catch(e){
+        return res.status(500).json({ status: "Failed", message: e.message });
+    }  
+  })
 
+//book of a auther
+  app.get("/books/:id",async (req,res)=>{
+    try{
+        const Book  = await book.findById(req.params.id).lean().exec();
+        
+        return res.status(200).send(Book);
+        
+    }catch(e){
+        return res.status(500).json({ status: "Failed", message: e.message });
+    }  
+  })
+
+
+  //book of a perticular author
+  app.get("/book/:id",async (req,res)=>{
+    try{
+        const Book  = await book.find({ author_id: req.params.id }).lean().exec();
+        
+        return res.status(200).send(Book);
+        
+    }catch(e){
+        return res.status(500).json({ status: "Failed", message: e.message });
+    }  
+  })
+
+
+  ///checked out
+  app.get("/checked/:id",async (req,res)=>{
+    try{
+        const Book  = await book.find({ check_id: req.params.id }).populate("check_id").lean().exec();
+        
+        return res.status(200).send(Book);
+        
+    }catch(e){
+        return res.status(500).json({ status: "Failed", message: e.message });
+    }  
+  })
+
+//book by author
+  app.get("/author/:id",async (req,res)=>{
+    try{
+        const Book  = await book.find({ author_id: req.params.id }).populate("check_id").lean().exec();
+        
+        return res.status(200).send(Book);
+        
+    }catch(e){
+        return res.status(500).json({ status: "Failed", message: e.message });
+    }  
+  })
+
+ 
   
 
 app.listen(8764, async () => {
